@@ -31,9 +31,39 @@ import styles from "assets/jss/material-kit-react/views/components.js";
 
 const useStyles = makeStyles(styles);
 
-export default function Components(props) {
+export default function Home(props) {
   const classes = useStyles();
   const { ...rest } = props;
+  const publications = [
+    {
+      id: 1,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
+      img: "/publication.jpg",
+    },
+    {
+      id: 2,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
+      img: "/publication.jpg",
+    },
+    {
+      id: 3,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
+      img: "/publication.jpg",
+    },
+    {
+      id: 4,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
+      img: "/publication.jpg",
+    },
+  ];
   return (
     <div>
       <Header
@@ -45,7 +75,14 @@ export default function Components(props) {
       />
 
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <SectionPublication />
+        {publications.map(function (publication) {
+          return (
+            <SectionPublication
+              key={publication.id}
+              publication={publication}
+            />
+          );
+        })}
         <SectionBasics />
         <SectionNavbars />
         <SectionTabs />
