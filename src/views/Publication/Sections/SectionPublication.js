@@ -7,6 +7,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import GridItem from "components/Grid/GridItem.js";
 
 import styles from "assets/jss/material-kit-react/views/componentsSections/publicationStyle.js";
+import { ArrowBack } from "@material-ui/icons";
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 // import image from "assets/img/publication.jpg";
 
 const useStyles = makeStyles(styles);
@@ -16,6 +19,11 @@ export default function SectionPublication(publication) {
   const classes = useStyles();
   return (
     <div className={classes.section}>
+      <Link to="/">
+        <Button variant="outlined" startIcon={<ArrowBack />}>
+          Voltar
+        </Button>
+      </Link>
       <GridItem xs={12} sm={12} md={12}>
         <h2>{pub.title}</h2>
         <h4>{pub.description}</h4>

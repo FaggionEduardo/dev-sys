@@ -7,18 +7,23 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // core components
 import Header from "components/Header/Header.js";
-import Footer from "components/Footer/Footer.js";
-// sections for this page
-import SectionPublication from "./Sections/SectionPublication.js";
 
-import styles from "assets/jss/material-kit-react/views/components.js";
-import { useParams } from "react-router-dom";
+import styles from "assets/jss/material-kit-react/views/listPublicationStyle";
+import {
+  Paper,
+  Table,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Button,
+} from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
-export default function Publication() {
+export default function ListPublications() {
   const classes = useStyles();
-  const { id } = useParams();
   const publications = [
     {
       id: 1,
@@ -49,15 +54,61 @@ export default function Publication() {
       img: "/publication.jpg",
     },
   ];
-  const publication = publications.find((publication) => publication.id == id);
+
   return (
     <div>
       <Header brand="Info Blog" fixed color="white" />
 
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <SectionPublication publication={publication} />
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "right" }}
+        >
+          <Button variant="contained" className={classes.addButton}>
+            Adicionar Publicação
+          </Button>
+        </div>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Título</TableCell>
+                <TableCell>Descrição</TableCell>
+                <TableCell>Imagem</TableCell>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {publications.map(function (publication) {
+                return (
+                  <TableRow
+                    key={publication.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {publication.title}
+                    </TableCell>
+                    <TableCell className={classes.description}>
+                      {publication.description}
+                    </TableCell>
+                    <TableCell>
+                      <a
+                        href={publication.img}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        Imagem
+                      </a>
+                    </TableCell>
+                    <TableCell>
+                      <ModalIcon icon={Trash}></ModalIcon>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
-      <Footer />
     </div>
   );
 }

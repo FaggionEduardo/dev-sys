@@ -55,5 +55,13 @@ const footerStyle = {
     position: "relative",
     top: "3px",
   },
+  linkStyles: {
+    "&:link": {
+      color: "#3C4858",
+    },
+    "&:visited": {
+      color: "#3C4858",
+    },
+  },
 };
 export default footerStyle;

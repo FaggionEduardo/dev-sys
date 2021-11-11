@@ -148,6 +148,14 @@ const headerStyle = {
     paddingLeft: "0",
     ...transition,
   },
+  linkStyles: {
+    "&:link": {
+      color: "#3C4858",
+    },
+    "&:visited": {
+      color: "#3C4858",
+    },
+  },
 };
 
 export default headerStyle;

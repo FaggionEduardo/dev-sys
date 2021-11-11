@@ -5,9 +5,7 @@ const signupPageStyle = {
     ...container,
     zIndex: "2",
     position: "relative",
-    paddingTop: "20vh",
     color: "#FFFFFF",
-    paddingBottom: "200px",
   },
   cardHidden: {
     opacity: "0",
@@ -16,15 +14,12 @@ const signupPageStyle = {
   pageHeader: {
     minHeight: "100vh",
     height: "auto",
-    display: "inherit",
-    position: "relative",
+    display: "flex",
     margin: "0",
     padding: "0",
     border: "0",
     alignItems: "center",
-    "&:before": {
-      background: "rgba(0, 0, 0, 0.5)",
-    },
+    justifyContent: "center",
     "&:before,&:after": {
       position: "absolute",
       zIndex: "1",
@@ -82,9 +77,6 @@ const signupPageStyle = {
     marginTop: "1rem",
     textAlign: "center",
     padding: "0",
-  },
-  inputIconsColor: {
-    color: "#495057",
   },
 };
 

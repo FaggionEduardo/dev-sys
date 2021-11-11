@@ -10,6 +10,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import styles from "assets/jss/material-kit-react/components/headerStyle.js";
 import logo from "assets/img/logo.png";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
@@ -23,10 +24,12 @@ export default function Header(props) {
     [classes.fixed]: fixed,
   });
   const brandComponent = (
-    <Button className={classes.title}>
-      <img src={logo} style={{ height: 45, marginRight: 10 }} alt="logo" />
-      {brand}
-    </Button>
+    <Link className={classes.linkStyles} to="/">
+      <Button className={classes.title}>
+        <img src={logo} style={{ height: 45, marginRight: 10 }} alt="logo" />
+        {brand}
+      </Button>
+    </Link>
   );
   return (
     <AppBar className={appBarClasses}>

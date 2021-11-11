@@ -12,7 +12,6 @@ import Footer from "components/Footer/Footer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
 // sections for this page
-import HeaderLinks from "components/Header/HeaderLinks.js";
 import SectionBasics from "./Sections/SectionBasics.js";
 import SectionNavbars from "./Sections/SectionNavbars.js";
 import SectionTabs from "./Sections/SectionTabs.js";
@@ -66,13 +65,7 @@ export default function Home(props) {
   ];
   return (
     <div>
-      <Header
-        brand="Info Blog"
-        rightLinks={<HeaderLinks />}
-        fixed
-        color="white"
-        {...rest}
-      />
+      <Header brand="Info Blog" fixed color="white" {...rest} />
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         {publications.map(function (publication) {

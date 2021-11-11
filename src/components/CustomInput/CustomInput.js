@@ -35,7 +35,7 @@ export default function CustomInput(props) {
     [classes.underlineError]: error,
     [classes.underlineSuccess]: success && !error,
     [classes.underline]: true,
-    [classes.whiteUnderline]: white,
+    [classes.whiteUnderline]: true,
   });
   const marginTop = classNames({
     [inputRootCustomClasses]: inputRootCustomClasses !== undefined,
