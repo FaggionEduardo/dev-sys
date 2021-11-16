@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // core components
 import Header from "components/Header/Header.js";
+import ModalIcon from "../../components/ModalIcon/ModalIcon";
 
 import styles from "assets/jss/material-kit-react/views/listPublicationStyle";
 import {
@@ -18,8 +19,9 @@ import {
   TableCell,
   TableBody,
   Button,
+  CardHeader,
 } from "@material-ui/core";
-
+import { Trash2 as TrashIcon, Edit as EditIcon } from "react-feather";
 const useStyles = makeStyles(styles);
 
 export default function ListPublications() {
@@ -54,6 +56,9 @@ export default function ListPublications() {
       img: "/publication.jpg",
     },
   ];
+  const Delete = (ok) => {
+    console.log(ok);
+  };
 
   return (
     <div>
@@ -100,7 +105,25 @@ export default function ListPublications() {
                       </a>
                     </TableCell>
                     <TableCell>
-                      <ModalIcon icon={Trash}></ModalIcon>
+                      <ModalIcon
+                        className={classes.icon}
+                        icon={TrashIcon}
+                        buttonTitle="Deletar"
+                        buttonStyle={{
+                          margin: 10,
+                          backgroundColor: "#8B0000",
+                          color: "#fff",
+                        }}
+                        buttonAction={Delete}
+                      >
+                        <CardHeader
+                          subheader={
+                            "Tem certeza que deseja deletar publicação?"
+                          }
+                          title="Deletar publicação"
+                        />
+                      </ModalIcon>
+                      <EditIcon className={classes.icon} />
                     </TableCell>
                   </TableRow>
                 );

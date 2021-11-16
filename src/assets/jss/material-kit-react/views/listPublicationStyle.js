@@ -45,6 +45,10 @@ const componentsStyle = {
     color: "white",
     margin: 15,
   },
+  icon: {
+    margin: "0 10px",
+    cursor: "pointer",
+  },
 };
 
 export default componentsStyle;

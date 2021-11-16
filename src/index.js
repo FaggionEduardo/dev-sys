@@ -9,6 +9,7 @@ import "assets/scss/material-kit-react.scss?v=1.10.0";
 import Home from "views/Home/Home";
 import Publication from "views/Publication/Publication";
 import ListPublications from "views/ListPublications/ListPublications.js";
+import AddPublication from "views/AddPublication/AddPublication.js";
 import LandingPage from "views/LandingPage/LandingPage.js";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
@@ -23,6 +24,7 @@ ReactDOM.render(
       <Route path="/login" component={LoginPage} />
       <Route path="/publication/:id" component={Publication} />
       <Route path="/list" component={ListPublications} />
+      <Route path="/add" component={AddPublication} />
       <Route path="/" component={Home} />
     </Switch>
   </Router>,

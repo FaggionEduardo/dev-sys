@@ -1,25 +1,10 @@
-/*
- * This file is part of LMS Livros Didáticos.
- *
- * LMS Livros Didáticos is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License.
- *
- * LMS Livros Didáticos is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with Foobar.  If not, see <https://www.gnu.org/licenses/>
- */
-
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Button } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -35,9 +20,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal(props) {
+export default function ModalIcon({
+  icon,
+  className,
+  children,
+  buttonTitle,
+  buttonStyle,
+  buttonAction,
+}) {
   const classes = useStyles();
-  const Icon = props.icon;
+  const Icon = icon;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -49,7 +41,7 @@ export default function TransitionsModal(props) {
 
   return (
     <>
-      <Icon onClick={handleOpen} className={props.className} />
+      <Icon onClick={handleOpen} className={className} />
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -65,7 +57,7 @@ export default function TransitionsModal(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            {props.children}
+            {children}
             <Button
               variant="contained"
               style={{
@@ -75,9 +67,24 @@ export default function TransitionsModal(props) {
             >
               Cancelar
             </Button>
+            <Button
+              variant="contained"
+              onClick={() => buttonAction("ok")}
+              style={buttonStyle}
+            >
+              {buttonTitle}
+            </Button>
           </div>
         </Fade>
       </Modal>
     </>
   );
 }
+ModalIcon.propTypes = {
+  children: PropTypes.node.isRequired,
+  icon: PropTypes.object,
+  className: PropTypes.string,
+  buttonTitle: PropTypes.string,
+  buttonStyle: PropTypes.string,
+  buttonAction: PropTypes.node,
+};
