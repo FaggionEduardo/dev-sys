@@ -22,6 +22,7 @@ import {
   CardHeader,
 } from "@material-ui/core";
 import { Trash2 as TrashIcon, Edit as EditIcon } from "react-feather";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles(styles);
 
 export default function ListPublications() {
@@ -68,9 +69,11 @@ export default function ListPublications() {
         <div
           style={{ width: "100%", display: "flex", justifyContent: "right" }}
         >
-          <Button variant="contained" className={classes.addButton}>
-            Adicionar Publicação
-          </Button>
+          <Link to="/add">
+            <Button variant="contained" className={classes.addButton}>
+              Adicionar Publicação
+            </Button>
+          </Link>
         </div>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
