@@ -81,7 +81,12 @@ const Form = ({ onSubmit, className }) => {
                   Cancelar
                 </Button>
               </Link>
-              <Button color="primary" variant="contained" type="submit">
+              <Button
+                //style={{ backgroundColor: "green", color: "white" }}
+                color="primary"
+                variant="contained"
+                type="submit"
+              >
                 Salvar
               </Button>
             </Box>

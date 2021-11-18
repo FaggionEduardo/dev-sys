@@ -15,12 +15,13 @@ export default function Field({ name, field, error }) {
       name={name}
       type={field.type}
       value={field.value}
+      color="primary"
       variant="outlined"
     />
   );
 }
 Field.propTypes = {
   name: PropTypes.string,
-  field: PropTypes.string,
+  field: PropTypes.object,
   error: PropTypes.string,
 };
