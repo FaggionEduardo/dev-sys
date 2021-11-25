@@ -10,6 +10,7 @@ import Home from "views/Home/Home";
 import Publication from "views/Publication/Publication";
 import ListPublications from "views/ListPublications/ListPublications.js";
 import AddPublication from "views/AddPublication/AddPublication.js";
+import EditPublication from "views/EditPublication/EditPublication.js";
 // import LandingPage from "views/LandingPage/LandingPage.js";
 // import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
@@ -25,6 +26,7 @@ ReactDOM.render(
       <Route path="/publication/:id" component={Publication} />
       <Route path="/list" component={ListPublications} />
       <Route path="/add" component={AddPublication} />
+      <Route path="/edit/:id" component={EditPublication} />
       <Route path="/" component={Home} />
     </Switch>
   </Router>,
