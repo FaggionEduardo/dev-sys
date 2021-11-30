@@ -31,7 +31,7 @@ export default function SectionPublication(publication) {
           <img
             src={pub.img}
             alt="..."
-            style={{ height: "100vh", maxHeight: 700, margin: "20px 0" }}
+            style={{ height: "50vw", maxHeight: 700, margin: "20px 0" }}
             className={
               classes.imgRaised +
               " " +
