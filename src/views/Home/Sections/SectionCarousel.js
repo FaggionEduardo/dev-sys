@@ -2,7 +2,7 @@ import React from "react";
 // react component for creating beautiful carousel
 import Carousel from "react-slick";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 // @material-ui/icons
 import LocationOn from "@material-ui/icons/LocationOn";
 // core components

@@ -1,6 +1,6 @@
 import React from "react";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 // @material-ui/icons
 
 // core components
@@ -19,7 +19,7 @@ export default function SectionPublication(publication) {
   const classes = useStyles();
   return (
     <div className={classes.section}>
-      <Link to="/">
+      <Link className={classes.linkStyles} to="/">
         <Button variant="outlined" startIcon={<ArrowBack />}>
           Voltar
         </Button>

@@ -149,6 +149,7 @@ const headerStyle = {
     ...transition,
   },
   linkStyles: {
+    textDecoration: "none",
     "&:link": {
       color: "#3C4858",
     },

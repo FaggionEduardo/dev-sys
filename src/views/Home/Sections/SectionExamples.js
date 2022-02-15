@@ -2,7 +2,7 @@ import React from "react";
 // react components for routing our app without refresh
 import { Link } from "react-router-dom";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 // @material-ui/icons
 
 // core components

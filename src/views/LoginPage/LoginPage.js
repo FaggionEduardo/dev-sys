@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Email from "@material-ui/icons/Email";
+import User from "@material-ui/icons/Person";
 // core components
 
 import GridContainer from "components/Grid/GridContainer.js";
@@ -17,11 +17,18 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 import Header from "components/Header/Header";
+import { useAuth } from "hooks/auth";
 
 const useStyles = makeStyles(styles);
 
 export default function LoginPage() {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const { Login } = useAuth();
+  function onSubmit() {
+    Login({ username, password });
+  }
   setTimeout(function () {
     setCardAnimation("");
   }, 700);
@@ -41,26 +48,30 @@ export default function LoginPage() {
                   <CardBody>
                     <CustomInput
                       color="none"
-                      labelText="Email"
-                      id="email"
+                      labelText="Usuário"
+                      id="username"
                       formControlProps={{
                         fullWidth: true,
                       }}
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       inputProps={{
-                        type: "email",
+                        type: "text",
                         endAdornment: (
                           <InputAdornment position="end">
-                            <Email />
+                            <User />
                           </InputAdornment>
                         ),
                       }}
                     />
                     <CustomInput
-                      labelText="Password"
-                      id="pass"
+                      labelText="Senha"
+                      id="password"
                       formControlProps={{
                         fullWidth: true,
                       }}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       inputProps={{
                         type: "password",
                         endAdornment: (
@@ -73,7 +84,9 @@ export default function LoginPage() {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button variant="contained">Login</Button>
+                    <Button onClick={() => onSubmit()} variant="contained">
+                      Login
+                    </Button>
                   </CardFooter>
                 </form>
               </Card>

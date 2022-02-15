@@ -2,7 +2,7 @@ import React from "react";
 // plugin that creates slider
 import Slider from "nouislider";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";

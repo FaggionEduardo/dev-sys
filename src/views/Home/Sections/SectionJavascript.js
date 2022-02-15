@@ -2,7 +2,7 @@ import React from "react";
 // react plugin for creating date-time-picker
 import Datetime from "react-datetime";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 import Slide from "@material-ui/core/Slide";
 import IconButton from "@material-ui/core/IconButton";
 import Dialog from "@material-ui/core/Dialog";
