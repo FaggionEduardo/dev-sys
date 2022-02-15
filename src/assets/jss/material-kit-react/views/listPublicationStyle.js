@@ -28,8 +28,14 @@ const componentsStyle = {
     boxShadow:
       "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)",
   },
-  link: {
+  linkStyles: {
     textDecoration: "none",
+    "&:link": {
+      color: "#3C4858",
+    },
+    "&:visited": {
+      color: "#3C4858",
+    },
   },
   textCenter: {
     textAlign: "center",

@@ -126,7 +126,13 @@ export default function ListPublications() {
                           title="Deletar publicação"
                         />
                       </ModalIcon>
-                      <EditIcon className={classes.icon} />
+                      <Link
+                        className={classes.linkStyles}
+                        to={"/edit/" + publication.id}
+                      >
+                        {" "}
+                        <EditIcon className={classes.icon} />
+                      </Link>
                     </TableCell>
                   </TableRow>
                 );

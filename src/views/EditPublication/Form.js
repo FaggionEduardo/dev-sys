@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
   root: {},
 }));
 
-const Form = ({ onSubmit, className }) => {
+const Form = ({ onSubmit, className, data = {} }) => {
   const classes = useStyles();
 
   const {
@@ -33,7 +33,7 @@ const Form = ({ onSubmit, className }) => {
     errors,
     handleSubmit,
     handleChange,
-  } = useMyForm(fields);
+  } = useMyForm(fields, data);
 
   return (
     <form
@@ -44,8 +44,8 @@ const Form = ({ onSubmit, className }) => {
         <Box mt={3}>
           <Card>
             <CardHeader
-              subheader={"Aqui você pode cadastrar uma nova publicação"}
-              title="Adicionar publicação"
+              subheader={"Aqui você pode editar uma publicação"}
+              title="Editar publicação"
             />
             <Divider />
             <CardContent>
@@ -110,6 +110,7 @@ const Form = ({ onSubmit, className }) => {
 Form.propTypes = {
   onSubmit: PropTypes.node,
   className: PropTypes.string,
+  data: PropTypes.object,
 };
 
 export default Form;

@@ -85,6 +85,6 @@ ModalIcon.propTypes = {
   icon: PropTypes.object,
   className: PropTypes.string,
   buttonTitle: PropTypes.string,
-  buttonStyle: PropTypes.string,
-  buttonAction: PropTypes.node,
+  buttonStyle: PropTypes.object,
+  buttonAction: PropTypes.func,
 };
