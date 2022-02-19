@@ -2,16 +2,20 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useAuth } from "../hooks/auth";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { user, token } = useAuth();
+const UnPrivateRoute = ({ component: Component, ...rest }) => {
+  const auth = useAuth();
   return (
     <Route
       {...rest}
       render={(props) =>
-        user && token ? <Redirect exact to="/" /> : <Component {...props} />
+        auth.isAuthenticate ? (
+          <Redirect exact to="/list" />
+        ) : (
+          <Component {...props} />
+        )
       }
     />
   );
 };
 
-export default PrivateRoute;
+export default UnPrivateRoute;

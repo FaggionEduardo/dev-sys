@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react components for routing our app without refresh
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // core components
 import Header from "components/Header/Header.js";
@@ -23,42 +23,30 @@ import {
 } from "@material-ui/core";
 import { Trash2 as TrashIcon, Edit as EditIcon } from "react-feather";
 import { Link } from "react-router-dom";
+import { useAuth } from "hooks/auth";
 const useStyles = makeStyles(styles);
 
 export default function ListPublications() {
+  const [publications, setPublications] = React.useState([]);
+  const [reRender, setReRender] = React.useState(1);
   const classes = useStyles();
-  const publications = [
-    {
-      id: 1,
-      title: "Lorem Ipsum",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
-      img: "/publication.jpg",
-    },
-    {
-      id: 2,
-      title: "Lorem Ipsum",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
-      img: "/publication.jpg",
-    },
-    {
-      id: 3,
-      title: "Lorem Ipsum",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
-      img: "/publication.jpg",
-    },
-    {
-      id: 4,
-      title: "Lorem Ipsum",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
-      img: "/publication.jpg",
-    },
-  ];
-  const Delete = (ok) => {
-    console.log(ok);
+  let { api, user } = useAuth();
+  api = api();
+  useEffect(async () => {
+    try {
+      let res = await api.get("/publications/getAllByUser/" + user.id);
+      setPublications(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [reRender]);
+  const Delete = async (id) => {
+    try {
+      await api.delete("/publications/" + id);
+      setReRender(reRender + 1);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -69,7 +57,7 @@ export default function ListPublications() {
         <div
           style={{ width: "100%", display: "flex", justifyContent: "right" }}
         >
-          <Link to="/add">
+          <Link className={classes.linkStyles} to="/add">
             <Button variant="contained" className={classes.addButton}>
               Adicionar Publicação
             </Button>
@@ -100,7 +88,9 @@ export default function ListPublications() {
                     </TableCell>
                     <TableCell>
                       <a
-                        href={publication.img}
+                        href={
+                          "http://localhost:4000/images/" + publication.image
+                        }
                         rel="noreferrer"
                         target="_blank"
                       >
@@ -117,7 +107,7 @@ export default function ListPublications() {
                           backgroundColor: "#8B0000",
                           color: "#fff",
                         }}
-                        buttonAction={Delete}
+                        buttonAction={() => Delete(publication.id)}
                       >
                         <CardHeader
                           subheader={

@@ -1,6 +1,6 @@
 export const fields = {
-  title: {
-    label: "Título",
+  firstName: {
+    label: "Nome",
     type: "text",
     value: "",
     rules: {
@@ -11,8 +11,8 @@ export const fields = {
       },
     },
   },
-  description: {
-    label: "Descrição",
+  lastName: {
+    label: "Sobrenome",
     type: "text",
     value: "",
     rules: {
@@ -23,12 +23,28 @@ export const fields = {
       },
     },
   },
-  image: {
-    label: "Imagem",
-    type: "file",
+  username: {
+    label: "Usuário",
+    type: "text",
     value: "",
     rules: {
       required: "Este campo é obrigatório",
+      minLength: {
+        value: 3,
+        message: "Mínimo de 3 caracteres",
+      },
+    },
+  },
+  password: {
+    label: "Senha",
+    type: "password",
+    value: "",
+    rules: {
+      required: "Este campo é obrigatório",
+      minLength: {
+        value: 3,
+        message: "Mínimo de 3 caracteres",
+      },
     },
   },
 };

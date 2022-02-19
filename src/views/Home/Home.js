@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react components for routing our app without refresh
 // import { Link } from "react-router-dom";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // core components
 import Header from "components/Header/Header.js";
@@ -27,74 +27,52 @@ import Footer from "components/Footer/Footer.js";
 import SectionPublication from "./Sections/SectionPublication.js";
 
 import styles from "assets/jss/material-kit-react/views/components.js";
+import { useAuth } from "hooks/auth/index.js";
 
 const useStyles = makeStyles(styles);
 
 export default function Home(props) {
+  const [publications, setPublications] = React.useState([]);
   const classes = useStyles();
   const { ...rest } = props;
-  const publications = [
-    {
-      id: 1,
-      title: "Lorem Ipsum",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
-      img: "/publication.jpg",
-    },
-    {
-      id: 2,
-      title: "Lorem Ipsum",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
-      img: "/publication.jpg",
-    },
-    {
-      id: 3,
-      title: "Lorem Ipsum",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
-      img: "/publication.jpg",
-    },
-    {
-      id: 4,
-      title: "Lorem Ipsum",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat nisl arcu, eu luctus ante congue eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris malesuada nisi nibh. Suspendisse in augue urna. Phasellus ligula nunc, sodales ut quam sed, dictum faucibus nisi. Nullam imperdiet placerat odio.",
-      img: "/publication.jpg",
-    },
-  ];
+  let { api } = useAuth();
+  api = api();
+  useEffect(async () => {
+    try {
+      let res = await api.get("/publications");
+      setPublications(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
   return (
     <div>
       <Header brand="Info Blog" fixed color="white" {...rest} />
 
       <div className={classNames(classes.main, classes.mainRaised)}>
-        {publications.map(function (publication) {
-          return (
-            <SectionPublication
-              key={publication.id}
-              publication={publication}
-            />
-          );
-        })}
-        {/* <SectionBasics />
-        <SectionNavbars />
-        <SectionTabs />
-        <SectionPills />
-        <SectionNotifications />
-        <SectionTypography />
-        <SectionJavascript />
-        <SectionCarousel />
-        <SectionCompletedExamples />
-        <SectionLogin />
-        <GridItem md={12} className={classes.textCenter}>
-          <Link to={"/login-page"} className={classes.link}>
-            <Button color="primary" size="lg" simple>
-              View Login Page
-            </Button>
-          </Link>
-        </GridItem>
-        <SectionExamples />
-        <SectionDownload /> */}
+        {publications.length > 0 ? (
+          publications.map(function (publication) {
+            return (
+              <SectionPublication
+                key={publication.id}
+                publication={publication}
+              />
+            );
+          })
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "70vh",
+            }}
+          >
+            <h1 style={{ textAlign: "center" }}>
+              Ainda não há publicações aqui.
+            </h1>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

@@ -34,8 +34,7 @@ const AuthProvider = ({ children }) => {
 
   async function Login(userData) {
     const response = await api().post("/users/authenticate", userData);
-    console.log(response);
-    setUser(response.data.user);
+
     sessionStorage.setItem(
       "user",
       JSON.stringify({
@@ -46,24 +45,39 @@ const AuthProvider = ({ children }) => {
       })
     );
     sessionStorage.setItem("token", response.data.token);
+    setUser({
+      id: response.data.id,
+      username: response.data.username,
+      firstName: response.data.firstName,
+      lastName: response.data.lastName,
+    });
+    setToken(response.data.token);
   }
 
   function Logout() {
     setUser(null);
     setToken(null);
-    localStorage.clear();
+    sessionStorage.clear();
   }
   return (
-    <AuthContext.Provider value={[user, token, Login, Logout, api]}>
+    <AuthContext.Provider value={[user, setUser, token, Login, Logout, api]}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 function useAuth() {
-  const [user, token, Login, Logout, api] = useContext(AuthContext);
+  const [user, setUser, token, Login, Logout, api] = useContext(AuthContext);
 
-  return { user, token, Login, Logout, api };
+  return {
+    isAuthenticate: user && token,
+    user,
+    setUser,
+    token,
+    Login,
+    Logout,
+    api,
+  };
 }
 
 AuthProvider.propTypes = {

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 // material-ui core components
 import { List, ListItem } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "assets/jss/material-kit-react/components/footerStyle.js";
 import { Link } from "react-router-dom";

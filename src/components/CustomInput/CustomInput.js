@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
@@ -26,6 +26,8 @@ export default function CustomInput(props) {
     white,
     inputRootCustomClasses,
     success,
+    name,
+    value,
   } = props;
 
   const labelClasses = classNames({
@@ -73,6 +75,8 @@ export default function CustomInput(props) {
           underline: underlineClasses,
         }}
         id={id}
+        name={name}
+        value={value}
         onChange={onChange}
         {...inputProps}
       />
@@ -90,5 +94,7 @@ CustomInput.propTypes = {
   error: PropTypes.bool,
   success: PropTypes.bool,
   white: PropTypes.bool,
+  name: PropTypes.string,
+  value: PropTypes.string,
   onChange: PropTypes.func,
 };

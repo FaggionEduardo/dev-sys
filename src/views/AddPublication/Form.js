@@ -60,9 +60,9 @@ const Form = ({ onSubmit, className }) => {
                 </Grid>
                 <Grid item md={6} xs={12}>
                   <UploadInput
-                    name="img"
-                    field={input.img}
-                    error={errors.img}
+                    name="image"
+                    field={input.image}
+                    error={errors.image}
                     onChange={handleChange}
                   />
                 </Grid>
@@ -80,7 +80,7 @@ const Form = ({ onSubmit, className }) => {
             </CardContent>
             <Divider />
             <Box display="flex" justifyContent="flex-end" p={2}>
-              <Link to="/list">
+              <Link style={{ textDecoration: "none" }} to="/list">
                 <Button
                   style={{
                     marginRight: 10,
@@ -92,12 +92,7 @@ const Form = ({ onSubmit, className }) => {
                   Cancelar
                 </Button>
               </Link>
-              <Button
-                //style={{ backgroundColor: "green", color: "white" }}
-                color="primary"
-                variant="contained"
-                type="submit"
-              >
+              <Button color="primary" variant="contained" type="submit">
                 Salvar
               </Button>
             </Box>
@@ -108,7 +103,7 @@ const Form = ({ onSubmit, className }) => {
   );
 };
 Form.propTypes = {
-  onSubmit: PropTypes.node,
+  onSubmit: PropTypes.func,
   className: PropTypes.string,
 };
 
